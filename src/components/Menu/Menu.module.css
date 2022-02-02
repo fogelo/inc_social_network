@@ -1,0 +1,9 @@
+.menu {
+    background-color: aquamarine;
+    min-width: 200px;
+    min-height: 100%;
+
+}
+.menu__item {
+    display: block;
+}
