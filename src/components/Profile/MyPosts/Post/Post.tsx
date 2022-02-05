@@ -9,7 +9,7 @@ type PropsType = {
     }
 }
 
-export const Post: React.FC<PropsType> = (props: PropsType) => {
+export const Post: React.FC<PropsType> = (props: PropsType) => { /*здесь 2 способа типизации*/
     return (
         <div className={style.post__wrapper}>
             <img src={ava} alt="ava"/>
