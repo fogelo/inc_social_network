@@ -9,6 +9,7 @@ const Dialogs = () => {
             <div className={style.users}>
                 <NavLink className={style.link} to={'/dialogs/1'}>user1</NavLink>
                 <NavLink className={style.link} to={'/dialogs/2'}>user2</NavLink>
+                <NavLink className={style.link} to={'/dialogs/2'}>user2</NavLink>
                 <NavLink className={style.link} to={'/dialogs/3'}>user3</NavLink>
                 <NavLink className={style.link} to={'/dialogs/4'}>user4</NavLink>
                 <NavLink className={style.link} to={'/dialogs/5'}>user5</NavLink>
