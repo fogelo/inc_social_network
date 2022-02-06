@@ -1,6 +1,14 @@
 .app-wrapper {
+    overflow: hidden;
 }
 
+.app {
+
+}
+
+.main-wrapper{
+    max-width: 1050px;
+}
 .main-wrapper {
     display: flex;
     min-width: 100%;

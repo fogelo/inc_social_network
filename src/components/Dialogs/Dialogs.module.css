@@ -1,0 +1,22 @@
+.dialogs {
+    padding: 10px;
+    display: flex;
+    min-width: 100%;
+    background-color: #c9ffbc;
+
+}
+
+.users {
+   flex: 0 0 25%;
+    line-height: 1.5;
+}
+.messages {
+   flex: 0 0 50%;
+    line-height: 1.5;
+}
+
+.link {
+    display: block;
+    text-decoration: none;
+    color: blueviolet;
+}

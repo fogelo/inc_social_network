@@ -17,13 +17,15 @@ function App() {
     return (
         <BrowserRouter>
             <div className={'app-wrapper'}>
-                <Header/>
-                <div className={'main-wrapper'}>
-                    <Menu/>
-                    <Routes>
-                        <Route path="/profile" element={<Profile posts={posts}/>}/>
-                        <Route path="/dialogs" element={<Dialogs />}/>
-                    </Routes>
+                <div className={'app'}><Header/>
+                    <div className={'main-wrapper'}>
+                        <Menu/>
+                        <Routes>
+                            <Route path="/profile" element={<Profile posts={posts}/>}/>
+                            {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
+                            <Route path="/dialogs/:id" element={<Dialogs/>}/>
+                        </Routes>
+                    </div>
                 </div>
             </div>
         </BrowserRouter>

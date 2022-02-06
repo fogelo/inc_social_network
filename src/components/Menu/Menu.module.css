@@ -2,8 +2,23 @@
     background-color: aquamarine;
     min-width: 200px;
     min-height: 100%;
-
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
 }
-.menu__item {
+
+
+.menu__link {
     display: block;
+    color: #686767;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/*.menu__linkactive {*/
+/*    color: red;*/
+/*}*/
+
+.active {
+    color: red;
 }
