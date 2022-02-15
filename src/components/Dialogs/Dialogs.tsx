@@ -4,20 +4,27 @@ import {NavLink} from 'react-router-dom';
 
 
 const Dialogs = () => {
+
+    let dialogsData = [
+        {id: 1, name: 'user1'},
+        {id: 2, name: 'user2'},
+        {id: 3, name: 'user3'},
+        {id: 4, name: 'user4'},
+        {id: 5, name: 'user5'},
+    ]
+
+    let messagesData = [
+        {id: 1, message: 'how are you?'},
+        {id: 2, message: 'i am fine'},
+        {id: 3, message: 'and you?'},
+    ]
     return (
         <div className={style.dialogs}>
             <div className={style.users}>
-                <NavLink className={style.link} to={'/dialogs/1'}>user1</NavLink>
-                <NavLink className={style.link} to={'/dialogs/2'}>user2</NavLink>
-                <NavLink className={style.link} to={'/dialogs/2'}>user2</NavLink>
-                <NavLink className={style.link} to={'/dialogs/3'}>user3</NavLink>
-                <NavLink className={style.link} to={'/dialogs/4'}>user4</NavLink>
-                <NavLink className={style.link} to={'/dialogs/5'}>user5</NavLink>
+                {dialogsData.map(u => <NavLink key={u.id} className={style.link} to={'/dialogs/' + u.id}>{u.name}</NavLink>)}
             </div>
             <div className={style.messages}>
-                <div>how are you?</div>
-                <div>i am fine</div>
-                <div>and you?</div>
+                {messagesData.map(m=><div key={m.id} >{m.message}</div>)}
             </div>
         </div>
     );

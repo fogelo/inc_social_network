@@ -6,11 +6,11 @@ import {Profile} from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-let posts = [
-    {id: 1, post: 'Я попал в инкубатор'},
-    {id: 2, post: 'Я выучил CSS'},
-    {id: 3, post: 'Я выучил JS'},
-    {id: 4, post: 'Я выучил React'},
+let postData = [
+    {id: 1, post: 'Я попал в инкубатор', likesCount: 12},
+    {id: 2, post: 'Я выучил CSS', likesCount: 1},
+    {id: 3, post: 'Я выучил JS', likesCount: 122},
+    {id: 4, post: 'Я выучил React', likesCount: 312},
 ]
 
 function App() {
@@ -20,10 +20,9 @@ function App() {
                 <div className={'app'}><Header/>
                     <div className={'main-wrapper'}>
                         <Menu/>
-                        <Routes>
-                            <Route path="/profile" element={<Profile posts={posts}/>}/>
+                        <Routes><Route path="profile" element={<Profile posts={postData}/>}/>
                             {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
-                            <Route path="/dialogs/*" element={<Dialogs/>}/>
+                            <Route path="dialogs/*" element={<Dialogs/>}/>
                         </Routes>
                     </div>
                 </div>

@@ -6,11 +6,11 @@ export const Menu = () => {
     return (
         <div>
             <nav className={style.menu}>
-                <NavLink to={'/profile'} className={({ isActive }) => (isActive ? style.active : 'inactive')}>Profile</NavLink>
-                <NavLink to={'/dialogs'} className={style.menu__link}>Messages</NavLink>
-                <NavLink to={'/news'} className={style.menu__link}>News</NavLink>
-                <NavLink to={'/music'} className={style.menu__link}>Music</NavLink>
-                <NavLink to={'/settings'} className={style.menu__link}>Settings</NavLink>
+                <NavLink to={'/profile'} className={({ isActive }) => (isActive ? style.active : 'active')}>Profile</NavLink>
+                <NavLink to={'/dialogs'} className={({ isActive }) => (isActive ? style.active : 'active')}>Messages</NavLink>
+                <NavLink to={'/news'} className={({ isActive }) => (isActive ? style.active : 'active')}>News</NavLink>
+                <NavLink to={'/music'} className={({ isActive }) => (isActive ? style.active : 'active')}>Music</NavLink>
+                <NavLink to={'/settings'} className={({ isActive }) => (isActive ? style.active : 'active')}>Settings</NavLink>
             </nav>
         </div>
     );

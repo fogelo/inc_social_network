@@ -3,8 +3,9 @@ import style from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
 
 type PostType = {
-        id: number
-        post: string
+    id: number
+    post: string
+    likesCount: number
 }
 
 export type ProfilePropsType = {
