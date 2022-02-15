@@ -1,12 +1,8 @@
 import React from 'react';
 import style from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
+import {PostType} from '../../App';
 
-type PostType = {
-    id: number
-    post: string
-    likesCount: number
-}
 
 export type ProfilePropsType = {
     posts: Array<PostType>
