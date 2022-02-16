@@ -8,7 +8,7 @@ export const MyPosts = (props: ProfilePropsType) => {
             <div>My posts</div>
             <textarea/>
             <button>add post</button>
-            {props.posts.map((item, index) => <Post post={props.posts[index]}/>)}
+            {props.state.posts.map((item, index) => <Post post={props.state.posts[index]}/>)}
         </div>
     );
 }

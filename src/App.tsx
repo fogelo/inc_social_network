@@ -22,10 +22,22 @@ export type MessageType = {
     message: string
 }
 
-type AppPropsType = {
-    posts: Array<PostType>
+export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+}
+
+type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+}
+
+type AppPropsType = {
+    state: StateType
 }
 
 function App(props: AppPropsType) {
@@ -35,9 +47,9 @@ function App(props: AppPropsType) {
                 <div className={'app'}><Header/>
                     <div className={'main-wrapper'}>
                         <Menu/>
-                        <Routes><Route path="profile" element={<Profile posts={props.posts}/>}/>
+                        <Routes><Route path="profile" element={<Profile state={props.state.profilePage}/>}/>
                             {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
-                            <Route path="dialogs/*" element={<Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                            <Route path="dialogs/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
                         </Routes>
                     </div>
                 </div>

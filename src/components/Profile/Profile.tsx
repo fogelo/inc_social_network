@@ -1,11 +1,11 @@
 import React from 'react';
 import style from './Profile.module.css'
 import {MyPosts} from './MyPosts/MyPosts';
-import {PostType} from '../../App';
+import {ProfilePageType} from '../../App';
 
 
 export type ProfilePropsType = {
-    posts: Array<PostType>
+    state: ProfilePageType
 }
 
 export const Profile = (props: ProfilePropsType) => {
