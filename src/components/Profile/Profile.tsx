@@ -6,6 +6,7 @@ import {ProfilePageType} from '../../App';
 
 export type ProfilePropsType = {
     state: ProfilePageType
+    addPost: (postText: string) => void
 }
 
 export const Profile = (props: ProfilePropsType) => {

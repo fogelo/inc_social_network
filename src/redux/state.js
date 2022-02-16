@@ -20,6 +20,15 @@ let state = {
             {id: 2, message: 'i am fine'},
             {id: 3, message: 'and you?'},
         ],
+    },
+    addPost: function (postText) {
+        debugger
+        let newPost = {
+            id: 5,
+            post: postText,
+            likesCount: 0
+        }
+        this.profilePage.posts.push(newPost)
     }
 }
 
