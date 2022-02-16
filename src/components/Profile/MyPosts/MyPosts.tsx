@@ -7,7 +7,6 @@ export const MyPosts = (props: ProfilePropsType) => {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef()
 
     function addPost() {
-        debugger
         if (newPostElement.current) {
             props.addPost(newPostElement.current.value)
         }
