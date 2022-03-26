@@ -35,12 +35,12 @@ export type ProfilePageType = {
 type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    addPost: () => void
-    updateNewPostText: (text: string) => void
 }
 
 type AppPropsType = {
     state: StateType
+    addPost: () => void
+    updateNewPostText: (text: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -52,8 +52,8 @@ function App(props: AppPropsType) {
                         <Menu/>
                         <Routes>
                             <Route path="profile" element={<Profile profilePage={props.state.profilePage}
-                                                                    addPost={props.state.addPost}
-                                                                    updateNewPostText={props.state.updateNewPostText}
+                                                                    addPost={props.addPost}
+                                                                    updateNewPostText={props.updateNewPostText}
                             />}/>
                             {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
                             <Route path="dialogs/*" element={<Dialogs state={props.state.dialogsPage}/>}/>
