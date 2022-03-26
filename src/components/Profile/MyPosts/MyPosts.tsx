@@ -8,17 +8,24 @@ export const MyPosts = (props: ProfilePropsType) => {
 
     function addPost() {
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
+            props.addPost()
         }
+    }
 
+    const onChange = () => {
+        if (newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
     }
 
     return (
         <div>
             <div>My posts</div>
-            <textarea ref={newPostElement}/>
+            <textarea value={props.profilePage.newPostText}
+                      onChange={onChange}
+                      ref={newPostElement}/>
             <button onClick={addPost}>add post</button>
-            {props.state.posts.map((item, index) => <Post post={props.state.posts[index]}/>)}
+            {props.profilePage.posts.map((item, index) => <Post post={props.profilePage.posts[index]}/>)}
         </div>
     );
 }

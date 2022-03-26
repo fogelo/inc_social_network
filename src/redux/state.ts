@@ -7,7 +7,8 @@ let state = {
             {id: 2, post: 'Я выучил CSS', likesCount: 1},
             {id: 3, post: 'Я выучил JS', likesCount: 122},
             {id: 4, post: 'Я выучил React', likesCount: 312},
-        ]
+        ],
+        newPostText: 'hard'
     },
     dialogsPage: {
         dialogs: [
@@ -23,13 +24,18 @@ let state = {
             {id: 3, message: 'and you?'},
         ],
     },
-    addPost: function (postText) {
+    addPost: function () {
         let newPost = {
             id: 5,
-            post: postText,
+            post: state.profilePage.newPostText,
             likesCount: 0
         }
         state.profilePage.posts.push(newPost)
+        state.profilePage.newPostText = ''
+        rerenderEntireTree()
+    },
+    updateNewPostText: function (text: string) {
+        state.profilePage.newPostText = text
         rerenderEntireTree()
     }
 }

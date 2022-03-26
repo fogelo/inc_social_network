@@ -5,7 +5,7 @@ import React from 'react';
 
 export function rerenderEntireTree(){
     ReactDOM.render(
-        <App state={state} />,
+        <App state={state}  />,
         document.getElementById('root')
     );
 }
