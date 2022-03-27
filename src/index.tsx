@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from './redux/state';
+import {BrowserRouter} from 'react-router-dom';
 
 
 function rerenderEntireTree(state: any) {
     ReactDOM.render(
-        <App state={state}
-             dispatch={store.dispatch.bind(store)}/>,
+        <BrowserRouter>
+            <App state={state}
+                 dispatch={store.dispatch.bind(store)}/>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 }

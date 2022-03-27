@@ -1,20 +1,15 @@
-.app-wrapper {
-    overflow: hidden;
+body {
+    font-weight: 700;
 }
 
 .app {
 
 }
 
-.main-wrapper{
-    max-width: 1050px;
-}
 .main-wrapper {
     display: flex;
-    min-width: 100%;
-}
-body {
-    font-weight: 700;
 }
 
-
+.content {
+    flex: 1 1 auto;
+}

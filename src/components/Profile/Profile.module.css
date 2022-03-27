@@ -2,6 +2,7 @@
     background-color: #c9ffbc;
     flex: 1 1 auto;
     min-height: 100%;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
