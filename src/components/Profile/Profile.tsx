@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Profile.module.css'
-import {MyPosts} from './MyPosts/MyPosts';
+import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfilePageType} from '../../App';
 
 
@@ -9,11 +9,11 @@ export type ProfilePropsType = {
     dispatch: any
 }
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = (props: any) => {
     return (
         <div className={style.profile}>
             <div>ava+description</div>
-            <MyPosts {...props}/>
+            <MyPostsContainer store={props.store}/>
         </div>
     );
 }

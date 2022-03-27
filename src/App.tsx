@@ -3,8 +3,8 @@ import './App.css';
 import {Header} from './components/Header/Header';
 import {Menu} from './components/Menu/Menu';
 import {Profile} from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import {Route, Routes} from 'react-router-dom';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 
 export type PostType = {
     id: number
@@ -43,7 +43,7 @@ type AppPropsType = {
     dispatch: any
 }
 
-function App(props: AppPropsType) {
+function App(props: any) {
     return (
         <div className={'app'}>
             <Header/>
@@ -51,13 +51,9 @@ function App(props: AppPropsType) {
                 <Menu/>
                 <div className={'content'}>
                     <Routes>
-                        <Route path="profile" element={<Profile profilePage={props.state.profilePage}
-                                                                dispatch={props.dispatch}
-
-                        />}/>
+                        <Route path="profile" element={<Profile store={props.store}/>}/>
                         {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
-                        <Route path="dialogs/*" element={<Dialogs dialogsPage={props.state.dialogsPage}
-                                                                  dispatch={props.dispatch}/>}/>
+                        <Route path="dialogs/*" element={<DialogsContainer store={props.store}/>}/>
                     </Routes>
                 </div>
             </div>
