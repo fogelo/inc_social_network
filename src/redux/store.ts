@@ -1,7 +1,7 @@
 import {profileReducer} from './profile-reducer';
 import {dialogsReducer} from './dialogs-reducer';
 
-export const store = {
+export const store: any = {
     state: {
         profilePage: {
             posts: [
