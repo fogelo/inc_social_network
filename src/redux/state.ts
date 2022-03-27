@@ -25,27 +25,29 @@ export const store = {
         },
     },
     getState() {
-      return this.state
+        return this.state
     },
-    _callSubscriber (state: any) {
-        console.log('rendered')
+    _callSubscriber(state: any) {
+        console.log('я есть заглушка')
     },
-    addPost: function () {
-        let newPost = {
-            id: 5,
-            post: this.state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this.state.profilePage.posts.push(newPost)
-        this.state.profilePage.newPostText = ''
-        this._callSubscriber(this.state)
-    },
-    updateNewPostText: function (text: string) {
-        this.state.profilePage.newPostText = text
-        this._callSubscriber(this.state)
-    },
+
     subscribe(observer: any) {
         this._callSubscriber = observer
+    },
+    dispatch(action: any) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                post: this.state.profilePage.newPostText,
+                likesCount: 0
+            }
+            this.state.profilePage.posts.push(newPost)
+            this.state.profilePage.newPostText = ''
+            this._callSubscriber(this.state)
+        } else if (action.type === 'UPDATE-NEW-TEXT') {
+            this.state.profilePage.newPostText = action.text
+            this._callSubscriber(this.state)
+        }
     }
 }
 

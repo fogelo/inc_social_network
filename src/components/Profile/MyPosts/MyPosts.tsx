@@ -7,24 +7,25 @@ export const MyPosts = (props: ProfilePropsType) => {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef()
 
     function addPost() {
-        if (newPostElement.current) {
-            props.addPost()
-        }
+        props.dispatch({type: 'ADD-POST'})
     }
 
-    const onChange = () => {
+    const onPostChange = () => {
         if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
+            props.dispatch({type: 'UPDATE-NEW-TEXT', text: newPostElement.current.value})
         }
+
     }
 
     return (
         <div>
             <div>My posts</div>
-            <textarea value={props.profilePage.newPostText}
-                      onChange={onChange}
-                      ref={newPostElement}/>
-            <button onClick={addPost}>add post</button>
+            <div style={{display: 'flex'}}>
+                <textarea value={props.profilePage.newPostText}
+                          onChange={onPostChange}
+                          ref={newPostElement}/>
+                <button onClick={addPost}>add post</button>
+            </div>
             {props.profilePage.posts.map((item, index) => <Post post={props.profilePage.posts[index]}/>)}
         </div>
     );
