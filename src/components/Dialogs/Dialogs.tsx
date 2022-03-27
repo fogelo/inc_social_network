@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import style from './Dialogs.module.css'
 import {NavLink} from 'react-router-dom';
 import {DialogsPageType} from '../../App';
-import {addMessageAC, updateNewMessageTextAC} from '../../redux/state';
+import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType

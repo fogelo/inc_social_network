@@ -1,6 +1,16 @@
 import {v1} from 'uuid';
 
-export const profileReducer = (state: any, action: any) => {
+const initState = {
+    posts: [
+        {id: '1', post: 'Я попал в инкубатор', likesCount: 12},
+        {id: '2', post: 'Я выучил CSS', likesCount: 1},
+        {id: '3', post: 'Я выучил JS', likesCount: 122},
+        {id: '4', post: 'Я выучил React', likesCount: 312},
+    ],
+        newPostText: ''
+}
+
+export const profileReducer = (state: any =  initState, action: any) => {
     switch (action.type) {
         case 'ADD-POST':
             let newPost = {
@@ -14,6 +24,13 @@ export const profileReducer = (state: any, action: any) => {
         case 'UPDATE-NEW-POST-TEXT':
             state.newPostText = action.text
             return state;
+        default: {
+            return state
+        }
     }
 
 }
+
+export const addPostAC = () => ({type: 'ADD-POST'})
+
+export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-POST-TEXT', text: text})

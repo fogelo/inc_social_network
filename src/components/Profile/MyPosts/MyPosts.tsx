@@ -1,7 +1,7 @@
 import React, {RefObject} from 'react';
 import {Post} from './Post/Post';
 import {ProfilePropsType} from '../Profile';
-import {addPostAC, updateNewPostTextAC} from '../../../redux/state';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/profile-reducer';
 
 export const MyPosts = (props: ProfilePropsType) => {
 

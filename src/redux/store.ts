@@ -39,17 +39,13 @@ export const store = {
         this._callSubscriber = observer
     },
     dispatch(action: any) {
-        profileReducer(this.state.profilePage, action)
-        dialogsReducer(this.state.dialogsPage, action)
+        this.state.profilePage = profileReducer(this.state.profilePage, action)
+        this.state.dialogsPage = dialogsReducer(this.state.dialogsPage, action)
         this._callSubscriber(this.state)
     }
 }
 
 
-export const addPostAC = () => ({type: 'ADD-POST'})
 
-export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-POST-TEXT', text: text})
 
-export const updateNewMessageTextAC = (text: any) => ({type: 'UPDATE-NEW-MESSAGE-TEXT', text: text})
 
-export const addMessageAC = () => ({type: 'ADD-MESSAGE'})
