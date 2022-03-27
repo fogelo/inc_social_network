@@ -1,4 +1,5 @@
-import {v1} from 'uuid';
+import {profileReducer} from './profile-reducer';
+import {dialogsReducer} from './dialogs-reducer';
 
 export const store = {
     state: {
@@ -38,30 +39,9 @@ export const store = {
         this._callSubscriber = observer
     },
     dispatch(action: any) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: v1(),
-                post: this.state.profilePage.newPostText,
-                likesCount: 0
-            }
-            this.state.profilePage.posts.push(newPost)
-            this.state.profilePage.newPostText = ''
-            this._callSubscriber(this.state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this.state.profilePage.newPostText = action.text
-            this._callSubscriber(this.state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this.state.dialogsPage.newMessageText = action.text
-            this._callSubscriber(this.state)
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                id: v1(),
-                message: this.state.dialogsPage.newMessageText,
-            }
-            this.state.dialogsPage.messages.push(newMessage)
-            this.state.dialogsPage.newMessageText = ''
-            this._callSubscriber(this.state)
-        }
+        profileReducer(this.state.profilePage, action)
+        dialogsReducer(this.state.dialogsPage, action)
+        this._callSubscriber(this.state)
     }
 }
 

@@ -27,7 +27,7 @@ export const MyPosts = (props: ProfilePropsType) => {
                           ref={newPostElement}/>
                 <button onClick={addPost}>add post</button>
             </div>
-            {props.profilePage.posts.map((item, index) => <Post post={props.profilePage.posts[index]}/>)}
+            {props.profilePage.posts.map((item, index) => <Post key={item.id} post={props.profilePage.posts[index]}/>)}
         </div>
     );
 }
