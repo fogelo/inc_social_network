@@ -52,6 +52,8 @@ export const store = {
 }
 
 
+export const addPostAC = () => ({type: 'ADD-POST'})
 
+export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-TEXT', text: text})
 
 

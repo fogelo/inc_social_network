@@ -1,18 +1,19 @@
 import React, {RefObject} from 'react';
 import {Post} from './Post/Post';
 import {ProfilePropsType} from '../Profile';
+import {addPostAC, updateNewPostTextAC} from '../../../redux/state';
 
 export const MyPosts = (props: ProfilePropsType) => {
 
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef()
 
     function addPost() {
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(addPostAC())
     }
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            props.dispatch({type: 'UPDATE-NEW-TEXT', text: newPostElement.current.value})
+            props.dispatch(updateNewPostTextAC(newPostElement.current.value))
         }
 
     }
