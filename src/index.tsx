@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {store} from './redux/redux-store';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 
 
 export const StoreContext: any = React.createContext(null)
@@ -18,9 +19,9 @@ export const StoreContext: any = React.createContext(null)
 function rerenderEntireTree(state: any) {
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <App/>
-            </StoreContext.Provider>
+            </Provider>
         </BrowserRouter>
         ,
         document.getElementById('root')

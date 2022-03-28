@@ -3,8 +3,6 @@ import {Post} from './Post/Post';
 
 
 export const MyPosts = (props: any) => {
-
-
     function addPost() {
         props.addPost()
     }
