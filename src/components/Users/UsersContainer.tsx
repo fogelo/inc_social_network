@@ -2,43 +2,21 @@ import {connect} from 'react-redux';
 import {followAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
 import {v1} from 'uuid';
 import photo from '../../img/user.png';
+import axios from 'axios';
 
 const Users = (props: any) => {
-
+    if (props.users.length === 0) {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
+    }
     return (
         <div>
-            <button onClick={()=>{
-                if (props.users.length === 0) {
-                    props.setUsers([
-                        {
-                            id: v1(),
-                            fullName: 'Anton',
-                            status: 'i am a boss1',
-                            location: {city: 'Moscow', country: 'Russia'},
-                            followed: false,
-                            photoUrl: photo
-                        },
-                        {
-                            id: v1(),
-                            fullName: 'Ivan',
-                            status: 'i am a boss2',
-                            location: {city: 'Kiev', country: 'Ukraine'},
-                            followed: false,
-                            photoUrl: photo
-                        },
-                        {
-                            id: v1(),
-                            fullName: 'Artem',
-                            status: 'i am a boss3',
-                            location: {city: 'Minsk', country: 'Belarus'},
-                            followed: false,
-                            photoUrl: photo
-                        },
-                    ])
-                }
-            }}>set users</button>
-            {props.users.map((u: any) => <div style={{marginBottom: '20px'}}>
-                <div><img style={{width: '100px'}} src={u.photoUrl} alt="1"/></div>
+            {props.users.map((u: any) => <div key={u.id} style={{marginBottom: '20px'}}>
+                <div>
+                    <img style={{width: '100px'}} src={u.photos.small !== null ? u.photos.small : photo} alt="avatar"/>
+                </div>
 
                 <div>
                     {u.followed
@@ -46,9 +24,10 @@ const Users = (props: any) => {
                         : <button onClick={() => props.follow(u.id)}>follow</button>}
                 </div>
 
-                <div>{u.fullName}</div>
-                <div>{u.location.city}</div>
-                <div>{u.location.country}</div>
+                <div>name: {u.name}</div>
+                <div>status: {u.status}</div>
+                {/*<div>{u.location.city}</div>*/}
+                {/*<div>{u.location.country}</div>*/}
 
             </div>)}
         </div>
