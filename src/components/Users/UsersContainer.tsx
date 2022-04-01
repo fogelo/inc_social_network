@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
-import photo from '../../img/user.png';
 import axios from 'axios';
 import React from 'react';
-import s from './UsersContainer.module.css'
+import {Users} from './Users';
 
-class Users extends React.Component<any> {
+
+class UsersContainer extends React.Component<any> {
     componentDidMount() {
         if (this.props.users.length === 0) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}
@@ -27,38 +27,14 @@ class Users extends React.Component<any> {
     }
 
     render() {
-        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.usersCount)
-        let pagesArray = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pagesArray.push(i)
-        }
-        return (
-            <div>
-                {pagesArray.map((e, i) => <span key={i}
-                                                className={e === this.props.currentPage ? s.currentPage : ''}
-                                                onClick={() => this.onPageChanged(e)}>
-                    {e}
-                </span>)}
-                {this.props.users.map((u: any) => <div key={u.id} style={{marginBottom: '20px'}}>
-                    <div>
-                        <img style={{width: '100px'}} src={u.photos.small !== null ? u.photos.small : photo}
-                             alt="avatar"/>
-                    </div>
-
-                    <div>
-                        {u.followed
-                            ? <button onClick={() => this.props.unfollow(u.id)}>unfollow</button>
-                            : <button onClick={() => this.props.follow(u.id)}>follow</button>}
-                    </div>
-                    <div>id: {u.id}</div>
-                    <div>name: {u.name}</div>
-                    <div>status: {u.status}</div>
-                    {/*<div>{u.location.city}</div>*/}
-                    {/*<div>{u.location.country}</div>*/}
-
-                </div>)}
-            </div>
-        )
+        return <Users totalUsersCount={this.props.totalUsersCount}
+                      usersCount={this.props.usersCount}
+                      currentPage={this.props.currentPage}
+                      users={this.props.users}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}
+                      onPageChanged={this.onPageChanged}
+        />
     }
 }
 
@@ -89,4 +65,4 @@ const mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
