@@ -1,6 +1,7 @@
 import s from './UsersContainer.module.css';
 import photo from '../../img/user.png';
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 export const Users = (props: any) => {
     const pagesCount = Math.ceil(props.totalUsersCount / props.usersCount)
@@ -17,8 +18,10 @@ export const Users = (props: any) => {
                 </span>)}
             {props.users.map((u: any) => <div key={u.id} style={{marginBottom: '20px'}}>
                 <div>
-                    <img style={{width: '100px'}} src={u.photos.small !== null ? u.photos.small : photo}
-                         alt="avatar"/>
+                    <NavLink to={'/profile'}>
+                        <img style={{width: '100px'}} src={u.photos.small !== null ? u.photos.small : photo}
+                             alt="avatar"/>
+                    </NavLink>
                 </div>
 
                 <div>

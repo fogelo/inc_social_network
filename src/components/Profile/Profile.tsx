@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Profile.module.css'
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfilePageType} from '../../App';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 
 
 export type ProfilePropsType = {
@@ -12,8 +13,8 @@ export type ProfilePropsType = {
 export const Profile = (props: any) => {
     return (
         <div className={style.profile}>
-            <div>ava+description</div>
-            <MyPostsContainer store={props.store}/>
+            <ProfileInfo profile={props.profile}/>
+            <MyPostsContainer/>
         </div>
     );
 }

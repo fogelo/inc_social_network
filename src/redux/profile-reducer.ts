@@ -7,7 +7,8 @@ const initState = {
         {id: '3', post: 'Я выучил JS', likesCount: 122},
         {id: '4', post: 'Я выучил React', likesCount: 312},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 export const profileReducer = (state: any = initState, action: any) => {
@@ -30,6 +31,9 @@ export const profileReducer = (state: any = initState, action: any) => {
                 newPostText: action.text
             };
         }
+        case 'SET-USER-PROFILE': {
+            return {...state, profile: action.profile}
+        }
         default: {
             return state
         }
@@ -40,3 +44,5 @@ export const profileReducer = (state: any = initState, action: any) => {
 export const addPostAC = () => ({type: 'ADD-POST'})
 
 export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-POST-TEXT', text: text})
+
+export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})
