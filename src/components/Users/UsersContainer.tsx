@@ -17,7 +17,7 @@ class UsersContainer extends React.Component<any> {
         if (this.props.users.length === 0) {
             this.props.toggleIsFetched(true)
             axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}
-            &count=${this.props.usersCount}`)
+            &count=${this.props.usersCount}`, {withCredentials: true})
                 .then(response => {
                     this.props.setUsers(response.data.items)
                     this.props.setTotalUsersCount(response.data.totalCount)
@@ -30,7 +30,7 @@ class UsersContainer extends React.Component<any> {
         this.props.toggleIsFetched(true)
         this.props.setCurrentPage(currentPage)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}
-            &count=${this.props.usersCount}`)
+            &count=${this.props.usersCount}`,{withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items)
                 this.props.toggleIsFetched(false)
