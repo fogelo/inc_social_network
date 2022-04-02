@@ -18,7 +18,7 @@ export const Users = (props: any) => {
                 </span>)}
             {props.users.map((u: any) => <div key={u.id} style={{marginBottom: '20px'}}>
                 <div>
-                    <NavLink to={'/profile'}>
+                    <NavLink to={`/profile/${u.id}`}>
                         <img style={{width: '100px'}} src={u.photos.small !== null ? u.photos.small : photo}
                              alt="avatar"/>
                     </NavLink>

@@ -9,4 +9,3 @@ const reducers = combineReducers({
     usersPage: usersReducer,
 })
 export const store = createStore(reducers)
-console.log(store)

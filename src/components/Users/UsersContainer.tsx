@@ -12,7 +12,6 @@ import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader';
 
-
 class UsersContainer extends React.Component<any> {
     componentDidMount() {
         if (this.props.users.length === 0) {
@@ -49,7 +48,6 @@ class UsersContainer extends React.Component<any> {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    onPageChanged={this.onPageChanged}
-
             />
         </>
     }
@@ -87,6 +85,8 @@ const mapStateToProps = (state: any) => {
 //
 //     }
 // }
+
+
 
 export default connect(mapStateToProps, {
     follow,
