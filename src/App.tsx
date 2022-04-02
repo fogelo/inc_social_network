@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import {Header} from './components/Header/Header';
 import {Menu} from './components/Menu/Menu';
-import {Profile} from './components/Profile/Profile';
 import {Route, Routes} from 'react-router-dom';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 export type PostType = {
     id: number
@@ -48,13 +47,13 @@ type AppPropsType = {
 function App(props: any) {
     return (
         <div className={'app'}>
-            <Header/>
+            <HeaderContainer/>
             <div className={'main-wrapper'}>
                 <Menu/>
                 <div className={'content'}>
                     <Routes>
+                        <Route path="profile/*" element={<ProfileContainer/>}/>
                         <Route path="profile/:userId" element={<ProfileContainer/>}/>
-                        {/*<Route path="/dialogs" element={<Dialogs/>}/>*/}
                         <Route path="dialogs/*" element={<DialogsContainer/>}/>
                         <Route path="users/*" element={<UsersContainer/>}/>
                     </Routes>

@@ -24,9 +24,17 @@ const mapStateToProps = (state: any) => ({
 
 const WithUrlDataContainerComponent = (props: any) => {
     const match = useMatch('/profile/:item') as any;
-    return (
-        <ProfileContainer {...props} userId={match.params.item}/>
-    )
+    if (match) {
+        return (
+            <ProfileContainer {...props} userId={match.params.item}/>
+        )
+    } else {
+        const userId = 23196
+        return (
+            <ProfileContainer {...props} userId={userId}/>
+        )
+    }
+
 }
 
 export default connect(mapStateToProps, {
