@@ -10,6 +10,8 @@ import {
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader';
+import {withAuthRedirect} from '../../HOC/withAuthRedirect';
+import {Profile} from '../Profile/Profile';
 
 
 class UsersContainer extends React.Component<any> {
@@ -28,7 +30,7 @@ class UsersContainer extends React.Component<any> {
         return <>
             {this.props.isFetched ? <Preloader/> : null}
 
-            <Users totalUsersCount={this.props.totalUsersCount}
+            <AuthRedirectComponent totalUsersCount={this.props.totalUsersCount}
                    usersCount={this.props.usersCount}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
@@ -75,6 +77,8 @@ const mapStateToProps = (state: any) => {
 //     }
 // }
 
+
+const AuthRedirectComponent = withAuthRedirect(Users)
 
 export default connect(mapStateToProps, {
     follow,

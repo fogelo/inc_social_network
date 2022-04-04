@@ -18,8 +18,6 @@ const Dialogs = (props: any) => {
         props.addMessage()
     }
 
-    if (!props.login) return <Navigate to={'/login'}/>
-
     return (
         <div className={style.dialogs}>
             <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 10px 0 10px'}}>

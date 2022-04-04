@@ -3,6 +3,9 @@ import {DialogsPageType} from '../../App';
 import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
+import {Navigate} from 'react-router-dom';
+import {Profile} from '../Profile/Profile';
+import {withAuthRedirect} from '../../HOC/withAuthRedirect';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
@@ -30,4 +33,6 @@ function mapDispatchToProps(dispatch: any) {
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
