@@ -12,6 +12,7 @@ import {Users} from './Users';
 import {Preloader} from '../common/Preloader';
 import {withAuthRedirect} from '../../HOC/withAuthRedirect';
 import {Profile} from '../Profile/Profile';
+import {compose} from 'redux';
 
 
 class UsersContainer extends React.Component<any> {
@@ -30,7 +31,7 @@ class UsersContainer extends React.Component<any> {
         return <>
             {this.props.isFetched ? <Preloader/> : null}
 
-            <AuthRedirectComponent totalUsersCount={this.props.totalUsersCount}
+            <Users totalUsersCount={this.props.totalUsersCount}
                    usersCount={this.props.usersCount}
                    currentPage={this.props.currentPage}
                    users={this.props.users}
@@ -80,7 +81,18 @@ const mapStateToProps = (state: any) => {
 
 const AuthRedirectComponent = withAuthRedirect(Users)
 
-export default connect(mapStateToProps, {
+// export default connect(mapStateToProps, {
+//     follow,
+//     unfollow,
+//     setUsers,
+//     setCurrentPage,
+//     setTotalUsersCount,
+//     toggleIsFetched,
+//     toggleFollowingProgress,
+//     getUsers
+// })(UsersContainer)
+
+export default compose(connect(mapStateToProps, {
     follow,
     unfollow,
     setUsers,
@@ -89,4 +101,4 @@ export default connect(mapStateToProps, {
     toggleIsFetched,
     toggleFollowingProgress,
     getUsers
-})(UsersContainer)
+}), withAuthRedirect)(UsersContainer)

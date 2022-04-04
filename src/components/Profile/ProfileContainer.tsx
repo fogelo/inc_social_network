@@ -33,6 +33,7 @@ const WithUrlDataContainerComponent = (props: any) => {
     }
 }
 
+
 const AuthRedirectComponent = withAuthRedirect(Profile)
 
 export default connect(mapStateToProps, {
