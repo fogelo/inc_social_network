@@ -1,4 +1,5 @@
 import {v1} from 'uuid';
+import {usersAPI} from '../api/api';
 
 const initState = {
     posts: [
@@ -46,3 +47,10 @@ export const addPostAC = () => ({type: 'ADD-POST'})
 export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-POST-TEXT', text: text})
 
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})
+
+export const getUserProfile = (userId: any) => (dispatch: any) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
