@@ -3,6 +3,7 @@ import {Profile} from './Profile';
 import {connect} from 'react-redux';
 import {getUserProfile} from '../../redux/profile-reducer';
 import {useMatch} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 
 class ProfileContainer extends React.Component<any> {
     componentDidMount() {
@@ -10,12 +11,14 @@ class ProfileContainer extends React.Component<any> {
     }
 
     render() {
+        if (!this.props.login) return <Navigate to={'/login'}/>
         return <Profile {...this.props}/>
     }
 }
 
 const mapStateToProps = (state: any) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    login: state.auth.login
 })
 
 const WithUrlDataContainerComponent = (props: any) => {

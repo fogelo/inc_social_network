@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import style from './Dialogs.module.css'
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {DialogsPageType} from '../../App';
 
 
@@ -18,12 +18,14 @@ const Dialogs = (props: any) => {
         props.addMessage()
     }
 
+    if (!props.login) return <Navigate to={'/login'}/>
+
     return (
         <div className={style.dialogs}>
             <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 10px 0 10px'}}>
                 <div>
                     {props.dialogs.map((u: any) => <NavLink key={u.id} className={style.link}
-                                                                        to={'/dialogs/' + u.id}>{u.name}</NavLink>)}
+                                                            to={'/dialogs/' + u.id}>{u.name}</NavLink>)}
                 </div>
                 <div>
                     {props.messages.map((m: any) => <div key={m.id}>{m.message}</div>)}
@@ -37,6 +39,8 @@ const Dialogs = (props: any) => {
             </div>
         </div>
     );
+
+
 };
 
 export default Dialogs;
