@@ -3,7 +3,6 @@ import style from './Profile.module.css'
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfilePageType} from '../../App';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
-import {useMatch} from 'react-router-dom';
 
 
 export type ProfilePropsType = {
