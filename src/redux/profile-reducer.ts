@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {usersAPI} from '../api/api';
+import {profileAPI, usersAPI} from '../api/api';
 
 const initState = {
     posts: [
@@ -9,7 +9,8 @@ const initState = {
         {id: '4', post: 'Я выучил React', likesCount: 312},
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 export const profileReducer = (state: any = initState, action: any) => {
@@ -35,6 +36,9 @@ export const profileReducer = (state: any = initState, action: any) => {
         case 'SET-USER-PROFILE': {
             return {...state, profile: action.profile}
         }
+        case 'SET-USER-STATUS': {
+            return {...state, status: action.status}
+        }
         default: {
             return state
         }
@@ -52,5 +56,22 @@ export const getUserProfile = (userId: any) => (dispatch: any) => {
     usersAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfile(response.data))
+        })
+}
+
+export const setUserStatus = (status: any) => ({type: 'SET-USER-STATUS', status})
+
+export const getUserStatus = (userId: any) => (dispatch: any) => {
+    profileAPI.getStatus(userId)
+        .then(response => {
+            dispatch(setUserStatus(response.data))
+        })
+}
+export const updateStatus = (status: any) => (dispatch: any) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setUserStatus(response.data))
+            }
         })
 }

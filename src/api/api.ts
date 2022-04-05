@@ -20,9 +20,25 @@ export const usersAPI = {
         return instance.post('follow/' + userId)
     },
     getProfile(userId: any) {
-        return instance.get(`profile/${userId}`)
+        console.warn('you are using an outdated method')
+        return profileAPI.getProfile(userId)
     }
 }
+
+export const profileAPI = {
+    getProfile(userId: any) {
+        return instance.get(`profile/${userId}`)
+    },
+    getStatus(userId: any) {
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(status: any) {
+        return instance.put('profile/status', {status: status})
+    }
+
+}
+
+
 export const authAPI = {
     me() {
         return instance.get('auth/me')

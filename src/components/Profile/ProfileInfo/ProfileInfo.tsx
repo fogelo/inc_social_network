@@ -9,7 +9,7 @@ export const ProfileInfo = (props: any) => {
     return (
         <div>
             <div>name: {props.profile.fullName}</div>
-            <ProfileStatus/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <div>
                 <img src={props.profile.photos.small ? props.profile.photos.small : photo}
                      alt="1"
@@ -22,8 +22,9 @@ export const ProfileInfo = (props: any) => {
 
 
 class ProfileStatus extends React.Component<any> {
+
     state = {
-        status: 'hello',
+        status: this.props.status,
         editMode: false
     }
 
@@ -37,6 +38,7 @@ class ProfileStatus extends React.Component<any> {
         this.setState({
             editMode: false
         })
+        this.props.updateStatus(this.state.status)
     }
 
     onChangeHandler(e: any) {
@@ -46,6 +48,7 @@ class ProfileStatus extends React.Component<any> {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 {this.state.editMode
@@ -56,9 +59,11 @@ class ProfileStatus extends React.Component<any> {
                                onChange={this.onChangeHandler.bind(this)}
                                value={this.state.status}/>
                     </div>
-                    : <div onDoubleClick={this.activateEditMode.bind(this)}><span>{this.state.status}</span></div>}
-
-
+                    : <div onDoubleClick={this.activateEditMode.bind(this)}>
+                        <span>
+                            {this.state.status ? this.state.status : '------'}
+                        </span>
+                    </div>}
             </div>
         )
     }
