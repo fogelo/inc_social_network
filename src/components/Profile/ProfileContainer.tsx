@@ -9,28 +9,7 @@ class ProfileContainer extends React.Component<any> {
     componentDidMount() {
         this.props.getUserProfile(this.props.userId)
         this.props.getUserStatus(this.props.userId)
-        // axios.get('https://social-network.samuraijs.com/api/1.0//profile/status/' + this.props.userId, {
-        //     withCredentials: true,
-        //     headers: {
-        //         'API-KEY': 'e1a10142-bc6b-4db7-85fc-aa063d946841'
-        //     }
-        // })
-        //     .then(response => {
-        //         this.props.setUserStatus(response.data)
-        //     })
     }
-
-    // updateStatus(status: any) {
-    //     axios.put('https://social-network.samuraijs.com/api/1.0//profile/status/', {status: status}, {
-    //         withCredentials: true,
-    //         headers: {
-    //             'API-KEY': 'e1a10142-bc6b-4db7-85fc-aa063d946841'
-    //         }
-    //     })
-    //         .then(response => {
-    //             this.props.setUserStatus(response.data)
-    //         })
-    // }
 
     render() {
         return <AuthRedirectComponent {...this.props}/>
@@ -39,7 +18,8 @@ class ProfileContainer extends React.Component<any> {
 
 const mapStateToProps = (state: any) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId
 })
 
 const WithUrlDataContainerComponent = (props: any) => {
@@ -49,9 +29,8 @@ const WithUrlDataContainerComponent = (props: any) => {
             <ProfileContainer {...props} userId={match.params.item}/>
         )
     } else {
-        const userId = 23196
         return (
-            <ProfileContainer {...props} userId={userId}/>
+            <ProfileContainer {...props} userId={props.authorizedUserId}/>
         )
     }
 }

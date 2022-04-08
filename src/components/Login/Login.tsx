@@ -3,6 +3,7 @@ import {maxLength, requiredField} from '../../utils/validators/validators';
 import {Input} from '../common/FormsControls';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
+import s from '../common/FormsControls.module.css'
 
 
 const mapStateToProps = (state: any) => {
@@ -16,7 +17,6 @@ const mapDispatchToProps = (dispatch: any) => {
         }
     }
 }
-
 
 
 const Login = (props: any) => {
@@ -53,6 +53,7 @@ const LoginForm = (props: any) => {
                 <Field component={'input'} name={'rememberMe'} type="checkbox"/>
                 remember me
             </div>
+            {props.error ? <span className={s.error}>{props.error}</span> : null}
             <div>
                 <button>login</button>
             </div>
@@ -63,4 +64,4 @@ const ReduxLoginForm = reduxForm({
     form: 'login'
 })(LoginForm)
 
-export const LoginContainer = connect(mapStateToProps,mapDispatchToProps)(Login)
+export const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(Login)
