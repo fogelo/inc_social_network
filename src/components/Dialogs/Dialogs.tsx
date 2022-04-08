@@ -3,6 +3,8 @@ import style from './Dialogs.module.css'
 import {Navigate, NavLink} from 'react-router-dom';
 import {DialogsPageType} from '../../App';
 import {Field, reduxForm} from 'redux-form';
+import {maxLength, requiredField} from '../../utils/validators/validators';
+import {Textarea} from '../common/FormsControls';
 
 
 type DialogsPropsType = {
@@ -10,12 +12,16 @@ type DialogsPropsType = {
     dispatch: any
 }
 
+const maxLength15 = maxLength(15)
 
 const AddMessageForm = (props: any) => {
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
-                <Field component={'textarea'} name={'newMessageText'} type={'text'}/>
+                <Field component={Textarea}
+                       name={'newMessageText'}
+                       type={'text'}
+                       validate={[requiredField, maxLength15]}/>
                 <button>add message</button>
             </form>
         </div>
