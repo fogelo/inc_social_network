@@ -8,7 +8,6 @@ const initState = {
         {id: '3', post: 'Я выучил JS', likesCount: 122},
         {id: '4', post: 'Я выучил React', likesCount: 312},
     ],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -18,19 +17,12 @@ export const profileReducer = (state: any = initState, action: any) => {
         case 'ADD-POST': {
             let newPost = {
                 id: v1(),
-                post: state.newPostText,
+                post: action.newPost,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
-            };
-        }
-        case 'UPDATE-NEW-POST-TEXT': {
-            return {
-                ...state,
-                newPostText: action.text
             };
         }
         case 'SET-USER-PROFILE': {
@@ -46,9 +38,9 @@ export const profileReducer = (state: any = initState, action: any) => {
 
 }
 
-export const addPostAC = () => ({type: 'ADD-POST'})
-
-export const updateNewPostTextAC = (text: any) => ({type: 'UPDATE-NEW-POST-TEXT', text: text})
+export const addPostAC = (newPost: any) => {
+    return {type: 'ADD-POST', newPost}
+}
 
 export const setUserProfile = (profile: any) => ({type: 'SET-USER-PROFILE', profile})
 

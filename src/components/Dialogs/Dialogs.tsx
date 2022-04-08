@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import style from './Dialogs.module.css'
 import {Navigate, NavLink} from 'react-router-dom';
 import {DialogsPageType} from '../../App';
+import {Field, reduxForm} from 'redux-form';
 
 
 type DialogsPropsType = {
@@ -10,12 +11,25 @@ type DialogsPropsType = {
 }
 
 
+const AddMessageForm = (props: any) => {
+    return (
+        <div>
+            <form onSubmit={props.handleSubmit}>
+                <Field component={'textarea'} name={'newMessageText'} type={'text'}/>
+                <button>add message</button>
+            </form>
+        </div>
+    )
+}
+
+const ReduxAddMessgeForm = reduxForm({
+    form: 'newMessage'
+})(AddMessageForm)
+
 const Dialogs = (props: any) => {
-    const onMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewMessageText(e.currentTarget.value)
-    }
-    const addMessage = () => {
-        props.addMessage()
+
+    const addMessage = (newMessage: any) => {
+        props.addMessage(newMessage.newMessageText)
     }
 
     return (
@@ -30,15 +44,15 @@ const Dialogs = (props: any) => {
                 </div>
             </div>
 
-            <div style={{display: 'flex', padding: '0 10px 0 10px'}}>
-                <textarea value={props.newMessageText}
-                          onChange={onMessageChange}/>
-                <button onClick={addMessage}>add message</button>
-            </div>
+            {/*<div style={{display: 'flex', padding: '0 10px 0 10px'}}>*/}
+            {/*    <textarea value={props.newMessageText}*/}
+            {/*              onChange={onMessageChange}/>*/}
+            {/*    <button onClick={addMessage}>add message</button>*/}
+            {/*</div>*/}
+            <ReduxAddMessgeForm onSubmit={addMessage}/>
         </div>
     );
-
-
 };
+
 
 export default Dialogs;
