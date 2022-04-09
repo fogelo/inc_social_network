@@ -6,10 +6,6 @@ import {NavLink, useNavigate} from 'react-router-dom';
 
 export const Header = (props: any) => {
 
-    const navigate = useNavigate()
-    useEffect(() => {
-        if (props.login) navigate('/profile')
-    }, [props.login])
     return (
         <div>
             <header className={style.header}>

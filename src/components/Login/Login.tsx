@@ -4,10 +4,14 @@ import {Input} from '../common/FormsControls';
 import {connect} from 'react-redux';
 import {login} from '../../redux/auth-reducer';
 import s from '../common/FormsControls.module.css'
+import {useNavigate} from 'react-router-dom';
+import {useEffect} from 'react';
 
 
 const mapStateToProps = (state: any) => {
-    return {}
+    return {
+        auth: state.auth.login
+    }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -24,6 +28,11 @@ const Login = (props: any) => {
         console.log(formData)
         props.login(formData.login, formData.password, formData.rememberMe)
     }
+    console.log('login')
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (props.auth) navigate('/profile')
+    }, [props.auth])
     return (
         <div>
             <h1>Login</h1>
@@ -31,7 +40,6 @@ const Login = (props: any) => {
         </div>
     )
 }
-
 
 const maxLength50 = maxLength(50)
 const LoginForm = (props: any) => {

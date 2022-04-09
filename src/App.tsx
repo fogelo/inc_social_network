@@ -1,12 +1,23 @@
 import React from 'react';
 import './App.css';
 import {Menu} from './components/Menu/Menu';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useMatch} from 'react-router-dom';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import {LoginContainer} from './components/Login/Login';
+import {connect} from 'react-redux';
+import {initializeApp} from './redux/app-reducer';
+import {Preloader} from './components/common/Preloader';
+
+// const withRouter = (Component: any) => {
+//     const ComponentContainer = (props: any) => {
+//         const match = useMatch('/profile/:id')
+//         return <Component {...props} id={match ? match.params.id : '23196'}/>
+//     }
+//     return ComponentContainer
+// }
 
 export type PostType = {
     id: number
@@ -45,25 +56,49 @@ type AppPropsType = {
     dispatch: any
 }
 
-function App(props: any) {
-    return (
-        <div className={'app'}>
-            <HeaderContainer/>
-            <div className={'main-wrapper'}>
-                <Menu/>
-                <div className={'content'}>
-                    <Routes>
-                        <Route path="profile/*" element={<ProfileContainer/>}/>
-                        <Route path="/" element={<ProfileContainer/>}/>
-                        <Route path="profile/:userId" element={<ProfileContainer/>}/>
-                        <Route path="dialogs/*" element={<DialogsContainer/>}/>
-                        <Route path="users/*" element={<UsersContainer/>}/>
-                        <Route path="login" element={<LoginContainer/>}/>
-                    </Routes>
+class App extends React.Component<any> {
+    componentDidMount() {
+        this.props.initializeApp()
+    }
+
+    render() {
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+        return (
+            <div className={'app'}>
+                <HeaderContainer/>
+                <div className={'main-wrapper'}>
+                    <Menu/>
+                    <div className={'content'}>
+                        <Routes>
+                            <Route path="profile/*" element={<ProfileContainer/>}/>
+                            <Route path="/" element={<ProfileContainer/>}/>
+                            <Route path="profile/:userId" element={<ProfileContainer/>}/>
+                            <Route path="dialogs/*" element={<DialogsContainer/>}/>
+                            <Route path="users/*" element={<UsersContainer/>}/>
+                            <Route path="login" element={<LoginContainer/>}/>
+                        </Routes>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+    return {
+        initialized: state.app.initialized
+    }
+}
+
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        initializeApp: () => {
+            dispatch(initializeApp())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
