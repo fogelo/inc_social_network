@@ -27,13 +27,10 @@ export class ProfileStatus extends React.Component<any> {
     }
 
     componentDidUpdate(prevProps: any, prevState: any) {
-
-
         // if(prevState.status !== this.)
     }
 
     render() {
-        console.log(this.props)
         return (
             <div>
                 {this.state.editMode

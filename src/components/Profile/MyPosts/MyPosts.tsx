@@ -21,15 +21,15 @@ const ReduxAddPostForm = reduxForm({
     form: 'newPostTextArea'
 })(AddPostForm)
 
-export const MyPosts = (props: any) => {
-    function addPost(newPost: any) {
+export function MyPosts(props: any) {
+    const addPost = (newPost: any) => {
         props.addPost(newPost.newPostTextArea)
     }
 
+    console.log('RENDER')
     return (
         <div>
             <div>My posts</div>
-
             <ReduxAddPostForm onSubmit={addPost}/>
             {props.posts.map((item: any, index: any) => <Post key={item.id} post={props.posts[index]}/>)}
         </div>

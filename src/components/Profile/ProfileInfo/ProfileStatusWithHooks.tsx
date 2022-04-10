@@ -23,9 +23,6 @@ export const ProfileStatusWithHooks = (props: any) => {
         setStatus(e.currentTarget.value)
     }
 
-    console.log(status)
-    console.log(props)
-
     return (
         <div>
             {editMode
