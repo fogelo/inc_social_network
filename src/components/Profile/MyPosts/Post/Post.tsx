@@ -11,7 +11,6 @@ type PropsType = {
 }
 
 export const Post: React.FC<PropsType> = (props: PropsType) => { /*здесь 2 способа типизации*/
-    console.log(props)
     return (
         <div className={style.post__wrapper}>
             <img src={ava} alt="ava"/>
