@@ -11,11 +11,8 @@ export const Users = (props: any) => {
     }
     return (
         <div>
-            {pagesArray.map((e, i) => <span key={i}
-                                            className={e === props.currentPage ? s.currentPage : ''}
-                                            onClick={() => props.onPageChanged(e)}>
-                    {e}
-                </span>)}
+            {pagesArray.map((e, i) => <span key={i} className={props.currentPage === e ? s.currentPage : ''}
+                                            onClick={() => props.onPageChanged(e)}>{e}</span>)}
             {props.users.map((u: any) => <div key={u.id} style={{marginBottom: '20px'}}>
                 <div>
                     <NavLink to={`/profile/${u.id}`}>

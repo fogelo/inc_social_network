@@ -57,9 +57,10 @@ export const toggleIsFetched = (isFetched: any) => ({type: 'TOGGLE-IS-FETCHED', 
 
 export const toggleFollowingProgress = (userId: any) => ({type: 'TOGGLE-FOLLOWING-PROGRESS', userId})
 
-export const getUsers = (currentPage: any, usersCount: any) => {
+export const requestUsers = (currentPage: any, usersCount: any) => {
     return (dispatch: any) => {
         dispatch(toggleIsFetched(true))
+        dispatch(setCurrentPage(currentPage))
         usersAPI.getUsers(currentPage, usersCount).then(data => {
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))

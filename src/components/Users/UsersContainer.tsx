@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {
-    follow, getUsers,
+    follow, requestUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress,
@@ -11,19 +11,26 @@ import React from 'react';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader';
 import {withAuthRedirect} from '../../HOC/withAuthRedirect';
-import {Profile} from '../Profile/Profile';
 import {compose} from 'redux';
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetched,
+    getTotalUsersCount,
+    getUsers,
+    getUsersCount
+} from '../../redux/users-selectors';
 
 
 class UsersContainer extends React.Component<any> {
     componentDidMount() {
         if (this.props.users.length === 0) {
-            this.props.getUsers(this.props.currentPage, this.props.usersCount)
+            this.props.requestUsers(this.props.currentPage, this.props.usersCount)
         }
     }
 
     onPageChanged = (currentPage: any) => {
-        this.props.getUsers(currentPage, this.props.usersCount)
+        this.props.requestUsers(currentPage, this.props.usersCount)
         this.props.setCurrentPage(currentPage)
     }
 
@@ -46,12 +53,12 @@ class UsersContainer extends React.Component<any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        users: state.usersPage.users,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        usersCount: state.usersPage.usersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetched: state.usersPage.isFetched,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        totalUsersCount: getTotalUsersCount(state),
+        usersCount: getUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetched: getIsFetched(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 // const mapDispatchToProps = (dispatch: any) => {
@@ -100,5 +107,5 @@ export default compose(connect(mapStateToProps, {
     setTotalUsersCount,
     toggleIsFetched,
     toggleFollowingProgress,
-    getUsers
+    requestUsers
 }), withAuthRedirect)(UsersContainer)
