@@ -17,7 +17,7 @@ const initState = {
 
 export const dialogsReducer = (state: any = initState, action: any) => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case 'dialogs/ADD-MESSAGE':
             let newMessage = {
                 id: v1(),
                 message: action.newMessage,
@@ -33,4 +33,4 @@ export const dialogsReducer = (state: any = initState, action: any) => {
     }
 }
 
-export const addMessageAC = (newMessage: any) => ({type: 'ADD-MESSAGE', newMessage})
+export const addMessageAC = (newMessage: any) => ({type: 'dialogs/ADD-MESSAGE', newMessage})

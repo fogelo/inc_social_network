@@ -9,7 +9,7 @@ const initState = {
 }
 export const authReducer = (state: any = initState, action: any) => {
     switch (action.type) {
-        case 'SET-AUTH-USER-DATA': {
+        case 'auth/SET-AUTH-USER-DATA': {
             return {
                 ...state,
                 userId: action.userId,
@@ -26,7 +26,7 @@ export const authReducer = (state: any = initState, action: any) => {
 
 
 export const setAuthUserData = (userId: number | null, email: string | null, login: string | null) => ({
-    type: 'SET-AUTH-USER-DATA',
+    type: 'auth/SET-AUTH-USER-DATA',
     userId,
     email,
     login
